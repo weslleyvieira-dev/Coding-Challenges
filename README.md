@@ -4,12 +4,12 @@
 
 Repositório pessoal onde registro minha evolução em algoritmos e estrutura de dados resolvendo problemas de plataformas como **LeetCode**.
 
-<!-- BADGES_START -->
-
-<!-- BADGES_END -->
 </div>
 
 ---
+<!-- BADGES_START -->
+
+<!-- BADGES_END -->
 
 ### 🎯 Objetivo
 
