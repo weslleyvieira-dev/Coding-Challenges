@@ -1,0 +1,39 @@
+name: Update README Badges
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update badges on push
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run badge updater
+        run: node scripts/update-badges.js
+
+      - name: Commit and push README if changed
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: "github-actions"
+          author_email: "github-actions@users.noreply.github.com"
+          message: "chore: update language badges in README"
+          add: "README.md"
+          push: "true"
