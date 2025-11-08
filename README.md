@@ -5,7 +5,7 @@
 Repositório pessoal onde registro minha evolução em algoritmos e estrutura de dados resolvendo problemas de plataformas como **LeetCode**.
 
 <!-- BADGES_START -->
-
+![JavaScript](https://img.shields.io/badge/JavaScript-1-F7DF1E?logo=javascript&logoColor=white&style=for-the-badge)
 <!-- BADGES_END -->
 </div>
 
