@@ -1,0 +1,8 @@
+{
+  "name": "coding-challenges",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update:badges": "node scripts/update-badges.js"
+  }
+}

@@ -4,12 +4,12 @@
 
 Repositório pessoal onde registro minha evolução em algoritmos e estrutura de dados resolvendo problemas de plataformas como **LeetCode**.
 
-</div>
-
----
 <!-- BADGES_START -->
 
 <!-- BADGES_END -->
+</div>
+
+---
 
 ### 🎯 Objetivo
 
@@ -37,7 +37,7 @@ Typescript/
 
 ### 🏷️ Questões e Soluções
 
-Cada arquivo começa com um bloco mínimo contendo o link do enunciado. Quando útil, coloco também observações rápidas (constraints, tempo/complexidade, abordagem).
+Cada arquivo começa com um bloco contendo o link do enunciado, regras de entrada, complexidade (tempo e espaço) e abordagem. Além disso no final do arquivo existe um bloco com exemplos de teste, que pode ser utilizado para verificar as saídas localmente.
 
 ---
 

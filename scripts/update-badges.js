@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Atualiza badges de linguagens no README.
 
-const fs = require("fs");
-const path = require("path");
+import { readdirSync, existsSync, readFileSync, writeFileSync } from "fs";
+import { resolve, join, extname, dirname } from "path";
+import { fileURLToPath } from "url";
 
-const REPO_ROOT = path.resolve(__dirname, "..");
-const README_PATH = path.join(REPO_ROOT, "README.md");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const REPO_ROOT = resolve(__dirname, "..");
+const README_PATH = join(REPO_ROOT, "README.md");
 
 const BADGES_START = "<!-- BADGES_START -->";
 const BADGES_END = "<!-- BADGES_END -->";
@@ -59,10 +61,10 @@ const IGNORED_DIRS = new Set([".git", "node_modules", "scripts", ".github"]);
 
 function walk(dir) {
   let files = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith(".")) continue;
     if (IGNORED_DIRS.has(entry.name)) continue;
-    const full = path.join(dir, entry.name);
+    const full = join(dir, entry.name);
     if (entry.isDirectory()) files = files.concat(walk(full));
     else files.push(full);
   }
@@ -70,8 +72,8 @@ function walk(dir) {
 }
 
 function countFilesByExtUnder(rootDir, exts) {
-  if (!fs.existsSync(rootDir)) return 0;
-  return walk(rootDir).filter((f) => exts.includes(path.extname(f))).length;
+  if (!existsSync(rootDir)) return 0;
+  return walk(rootDir).filter((f) => exts.includes(extname(f))).length;
 }
 
 const encodeBadgeLabel = (s) =>
@@ -86,12 +88,12 @@ function buildBadge({ label, count, color, logo }) {
 
 function computeLanguageCounts() {
   const counts = [];
-  for (const entry of fs.readdirSync(REPO_ROOT, { withFileTypes: true })) {
+  for (const entry of readdirSync(REPO_ROOT, { withFileTypes: true })) {
     if (!entry.isDirectory() || IGNORED_DIRS.has(entry.name)) continue;
     const config = LANGUAGE_CONFIG[entry.name];
     if (!config) continue;
     const count = countFilesByExtUnder(
-      path.join(REPO_ROOT, entry.name),
+      join(REPO_ROOT, entry.name),
       config.exts
     );
     if (count) counts.push({ langName: entry.name, count, config });
@@ -103,24 +105,27 @@ function computeLanguageCounts() {
 
 function ensureBadgesBlock(readme) {
   const lines = readme.split(/\r?\n/);
+  const startIdx = lines.findIndex((l) => l.includes(BADGES_START));
+  const endIdx = lines.findIndex((l) => l.includes(BADGES_END));
+
+  if (startIdx !== -1 && endIdx !== -1 && endIdx >= startIdx)
+    return lines.join("\n");
+
   const divOpenIdx = lines.findIndex((l) =>
     /<div\s+align="center"\s*>/i.test(l.trim())
   );
-  const divCloseIdx =
-    divOpenIdx === -1
-      ? -1
-      : lines.slice(divOpenIdx + 1).findIndex((l) => l.trim() === "</div>") +
-        (divOpenIdx + 1);
-  const startIdx = lines.findIndex((l) => l.includes(BADGES_START));
-  const endIdx = lines.findIndex((l) => l.includes(BADGES_END));
-  if (startIdx !== -1 && endIdx !== -1 && endIdx >= startIdx) {
-    lines.splice(startIdx, endIdx - startIdx + 1);
+  if (divOpenIdx !== -1) {
+    let insertAt = divOpenIdx + 1;
+    for (let i = divOpenIdx + 1; i < lines.length; i++) {
+      if (/^##\s+/.test(lines[i].trim())) {
+        insertAt = i + 2;
+        break;
+      }
+    }
+    lines.splice(insertAt, 0, BADGES_START, BADGES_END, "");
+    return lines.join("\n");
   }
-  if (divCloseIdx === -1) {
-    return [BADGES_START, BADGES_END, ...lines].join("\n");
-  }
-  lines.splice(divCloseIdx, 0, BADGES_START, BADGES_END);
-  return lines.join("\n");
+  return [BADGES_START, BADGES_END, "", ...lines].join("\n");
 }
 
 function replaceBadges(readme, badgesLine) {
@@ -136,7 +141,7 @@ function replaceBadges(readme, badgesLine) {
 }
 
 function main() {
-  let readme = fs.readFileSync(README_PATH, "utf8");
+  let readme = readFileSync(README_PATH, "utf8");
   readme = ensureBadgesBlock(readme);
   const counts = computeLanguageCounts();
   const badgesLine = counts
@@ -150,7 +155,7 @@ function main() {
     )
     .join(" ");
   const updated = replaceBadges(readme, badgesLine);
-  if (updated !== readme) fs.writeFileSync(README_PATH, updated, "utf8");
+  if (updated !== readme) writeFileSync(README_PATH, updated, "utf8");
 }
 
-if (require.main === module) main();
+main();
