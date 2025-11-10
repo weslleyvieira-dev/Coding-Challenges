@@ -14,7 +14,7 @@
  * @return {ListNode}
  */
 
-var middleNode = function (head) {
+function middleNode(head) {
   let middle = head;
   let end = head;
 
@@ -24,7 +24,7 @@ var middleNode = function (head) {
   }
 
   return middle;
-};
+}
 
 //Exemplos rápidos
 //"Javascript/tests/876.Middle-of-the-Linked-List.test.js"

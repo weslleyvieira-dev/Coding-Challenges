@@ -14,7 +14,7 @@
  * @return {string[]}
  */
 
-var fizzBuzz = function (n) {
+function fizzBuzz(n) {
   let answer = [];
 
   for (let i = 1; i <= n; i++) {
@@ -32,7 +32,7 @@ var fizzBuzz = function (n) {
   }
 
   return answer;
-};
+}
 
 // Exemplos rápidos
 // console.log(fizzBuzz(3)); // esperado: ["1","2","Fizz"]

@@ -13,7 +13,7 @@
  * @return {number}
  */
 
-var numberOfSteps = function (num) {
+function numberOfSteps(num) {
   let steps = 0;
 
   while (num > 0) {
@@ -27,7 +27,7 @@ var numberOfSteps = function (num) {
   }
 
   return steps;
-};
+}
 
 // Exemplos rápidos
 // console.log(numberOfSteps(14));  // esperado: 6

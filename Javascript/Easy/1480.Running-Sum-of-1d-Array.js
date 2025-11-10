@@ -14,7 +14,7 @@
  * @return {number[]}
  */
 
-var runningSum = function (nums) {
+function runningSum(nums) {
   const output = new Array(nums.length);
   output[0] = nums[0];
 
@@ -23,7 +23,7 @@ var runningSum = function (nums) {
   }
 
   return output;
-};
+}
 
 // Exemplos rápidos
 // console.log(runningSum([1, 2, 3, 4]));     // esperado: [1,3,6,10]

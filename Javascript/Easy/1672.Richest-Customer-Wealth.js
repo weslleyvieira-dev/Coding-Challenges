@@ -16,7 +16,7 @@
  * @return {number}
  */
 
-var maximumWealth = function (accounts) {
+function maximumWealth(accounts) {
   let maxWealth = 0;
 
   for (let i = 0; i < accounts.length; i++) {
@@ -30,7 +30,7 @@ var maximumWealth = function (accounts) {
   }
 
   return maxWealth;
-};
+}
 
 // Exemplos rápidos
 // console.log(maximumWealth([[1, 2, 3], [3, 2, 1]]));            // esperado: 6
