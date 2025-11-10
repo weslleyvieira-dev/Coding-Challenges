@@ -23,16 +23,35 @@ const LANGUAGE_CONFIG = {
   },
 };
 
-const IGNORED_DIRS = new Set([".git", "node_modules", "scripts", ".github"]);
+const IGNORED_DIRS = new Set([
+  ".git",
+  "node_modules",
+  "scripts",
+  ".github",
+  "tests",
+]);
+
+const IGNORED_FILE_BASENAMES = new Set(["template.js", "test.js"]);
 
 function walk(dir) {
   let files = [];
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith(".")) continue;
-    if (IGNORED_DIRS.has(entry.name)) continue;
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) files = files.concat(walk(full));
-    else files.push(full);
+    if (entry.isDirectory()) {
+      if (IGNORED_DIRS.has(entry.name)) continue;
+      files.push(...walk(join(dir, entry.name)));
+      continue;
+    }
+    const name = entry.name.toLowerCase();
+    let skip = false;
+    for (const ignored of IGNORED_FILE_BASENAMES) {
+      if (name.endsWith(ignored)) {
+        skip = true;
+        break;
+      }
+    }
+    if (skip) continue;
+    files.push(join(dir, entry.name));
   }
   return files;
 }
