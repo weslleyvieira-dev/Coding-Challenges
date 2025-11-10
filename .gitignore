@@ -1,0 +1,52 @@
+# Node.js & JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+log.txt
+
+# Build output
+dist/
+build/
+out/
+.cache/
+.vite/
+dist-ssr/
+
+# Coverage
+coverage/
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.local
+*.cache
+*.tsbuildinfo
+
+#Others
+Template*
