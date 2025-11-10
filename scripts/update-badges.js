@@ -16,45 +16,11 @@ const BADGE_STYLE = "for-the-badge";
 const LANGUAGE_CONFIG = {
   Javascript: {
     exts: [".js", ".mjs", ".cjs"],
-    color: "F7DF1E",
+    bgColor: "323330",
     logo: "javascript",
+    logoColor: "F7DF1E",
     display: "JavaScript",
   },
-  Typescript: {
-    exts: [".ts", ".mts", ".cts"],
-    color: "3178C6",
-    logo: "typescript",
-    display: "TypeScript",
-  },
-  Python: { exts: [".py"], color: "3776AB", logo: "python", display: "Python" },
-  Go: { exts: [".go"], color: "00ADD8", logo: "go", display: "Go" },
-  Java: { exts: [".java"], color: "007396", logo: "java", display: "Java" },
-  "C#": { exts: [".cs"], color: "239120", logo: "c%23", display: "C#" },
-  "C++": {
-    exts: [".cpp", ".cc", ".cxx", ".hpp", ".hh", ".hxx"],
-    color: "00599C",
-    logo: "cplusplus",
-    display: "C++",
-  },
-  C: { exts: [".c", ".h"], color: "A8B9CC", logo: "c", display: "C" },
-  Rust: { exts: [".rs"], color: "000000", logo: "rust", display: "Rust" },
-  Ruby: { exts: [".rb"], color: "CC342D", logo: "ruby", display: "Ruby" },
-  Kotlin: {
-    exts: [".kt", ".kts"],
-    color: "0095D5",
-    logo: "kotlin",
-    display: "Kotlin",
-  },
-  Swift: { exts: [".swift"], color: "F05138", logo: "swift", display: "Swift" },
-  PHP: { exts: [".php"], color: "777BB4", logo: "php", display: "PHP" },
-  Dart: { exts: [".dart"], color: "0175C2", logo: "dart", display: "Dart" },
-  Scala: {
-    exts: [".scala", ".sc"],
-    color: "DC322F",
-    logo: "scala",
-    display: "Scala",
-  },
-  R: { exts: [".r", ".R"], color: "276DC3", logo: "r", display: "R" },
 };
 
 const IGNORED_DIRS = new Set([".git", "node_modules", "scripts", ".github"]);
@@ -79,10 +45,10 @@ function countFilesByExtUnder(rootDir, exts) {
 const encodeBadgeLabel = (s) =>
   encodeURIComponent(s.replace(/-/g, "--").replace(/_/g, "__"));
 
-function buildBadge({ label, count, color, logo }) {
+function buildBadge({ label, count, bgColor, logo, logoColor }) {
   const url = `https://img.shields.io/badge/${encodeBadgeLabel(
     label
-  )}-${count}-${color}?logo=${logo}&logoColor=white&style=${BADGE_STYLE}`;
+  )}-${count}-${bgColor}?style=${BADGE_STYLE}&logo=${logo}&logoColor=${logoColor}`;
   return `![${label}](${url})`;
 }
 
@@ -149,8 +115,9 @@ function main() {
       buildBadge({
         label: config.display,
         count,
-        color: config.color,
+        bgColor: config.bgColor,
         logo: config.logo,
+        logoColor: config.logoColor || "white",
       })
     )
     .join(" ");
