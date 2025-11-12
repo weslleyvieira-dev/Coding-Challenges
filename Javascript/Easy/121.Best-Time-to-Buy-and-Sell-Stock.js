@@ -11,7 +11,6 @@
  *   Dois ponteiros: buy aponta para o índice do menor preço encontrado até o momento e sell percorre os dias seguintes.
  *   Para cada posição de sell, se prices[sell] > prices[buy] calcula-se profit e atualiza-se maxProfit quando apropriado.
  *   Se prices[sell] <= prices[buy], atualiza-se buy = sell (novo menor preço).
- *   A varredura é feita em uma única passada (one-pass), garantindo Tempo: O(n) e Espaço: O(1).
  * @param {number[]} prices
  * @return {number}
  */
