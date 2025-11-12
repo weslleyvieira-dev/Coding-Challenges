@@ -2,7 +2,7 @@
  * Link: https://leetcode.com/problems/ransom-note/
  * Tags: Hash Table, String, Counting
  * Constraints:
- *   1 <= ransomNote.length, magazine.length <= 105
+ *   1 <= ransomNote.length, magazine.length <= 10^5
  *   ransomNote and magazine consist of lowercase English letters.
  * Complexidade:
  *   Tempo: O(m + n)

@@ -6,7 +6,7 @@
  *   nums2.length == n
  *   0 <= m, n <= 200
  *   1 <= m + n <= 200
- *   -109 <= nums1[i], nums2[j] <= 109
+ *   -10^9 <= nums1[i], nums2[j] <= 10^9
  * Complexidade:
  *   Tempo: O(n)
  *   Espaço: O(1)

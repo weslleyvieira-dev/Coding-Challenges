@@ -2,7 +2,7 @@
  * Link: https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
  * Tags: Math, Bit Manipulation
  * Constraints:
- *   0 <= num <= 106
+ *   0 <= num <= 10^6
  * Complexidade:
  *   Tempo: O(logn)
  *   Espaço: O(1)
