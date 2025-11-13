@@ -13,6 +13,7 @@
  *   então atualizamos o goal para a posição atual.
  *   Ao final retornamos se goal === 0 (é possível alcançar o início).
  */
+
 function canJump(nums) {
   let goal = nums.length - 1;
   for (let i = goal - 1; i >= 0; i--) {
