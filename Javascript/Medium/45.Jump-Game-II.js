@@ -11,8 +11,8 @@
  * Abordagem:
  *   Percorremos o array do início mantendo três variáveis:
  *   count (conta pulos), end (alcance do salto atual) e limit (maior alcance possível dentro do salto atual).
- *   Para cada índice i atualizamos limit recebe o maior valor entre limit e i + nums[i].
- *   Quando i === end precisamos dar um novo pulo: incrementamos count e atualizamos end = limit.
+ *   Para cada índice i, limit recebe o maior valor entre limit e i + nums[i] (valor do salto).
+ *   Quando i === end precisamos dar um novo pulo: incrementamos count e atualizamos end.
  *   Como é garantido que o último índice é alcançável, esse processo produz o número mínimo de pulos.
  */
 
