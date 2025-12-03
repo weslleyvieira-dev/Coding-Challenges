@@ -44,7 +44,7 @@ let s = "PAYPALISHIRING";
 let numRows = 3;
 console.log(convert(s, numRows)); // esperado: "PAHNAPLSIIGYIR"
 */
-/* Exemplo 1
+/* Exemplo 2
 let s = "PAYPALISHIRING";
 let numRows = 4;
 console.log(convert(s, numRows)); // esperado: "PINALSIGYAHRPI"
