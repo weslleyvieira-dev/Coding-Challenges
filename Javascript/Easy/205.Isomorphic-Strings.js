@@ -1,5 +1,5 @@
 /*
- * Link: https://leetcode.com/problems/
+ * Link: https://leetcode.com/problems/isomorphic-strings/
  * Tags: Hash Table, String
  * Constraints:
  *   1 <= s.length <= 5 * 10^4
